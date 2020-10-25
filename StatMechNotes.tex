@@ -1,0 +1,739 @@
+\documentclass[12pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{multirow}
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Notes on Statistical Mechanics}\\ % Title
+} % Subtitle
+
+\author{\textsc{Wujie Wang Shaolou Wei} % Author
+\\{\textit{Massachusetts Institute of Technology}}} % Institution
+
+\date{\today} % Date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+
+\begin{abstract}
+This technical note surveys some fundamental concepts in in statistical physics. The document will cover basic classical thermodynamics, ensemble theory, phase transition with illustration of definitions and examples. In the last section, basic ideas on modern non-equilibrium statistical physics is introduced. 
+\end{abstract}
+
+\hspace*{3,6mm}\textit{Keywords:} statistical mechanics % Keywords
+
+\vspace{10pt} % Some vertical space between the abstract and first section
+
+%----------------------------------------------------------------------------------------
+% BODY
+%----------------------------------------------------------------------------------------
+
+\section{Mathematical Formalism of Classical Thermodynamics}
+
+\subsection{Some Laws}
+\par
+The fundamental relation of thermodynamics relates differential change of the three types of important extensive quantities: Energy, Entropy, Canonical displacements: 
+$$dE = TdS - \sum{F_i dX_i}$$
+
+\par 
+- The first law is a statement of conservation of energy. 
+- The second law indicates the direction of physical processes toward equilibrium. 
+$$\Delta S \geq \int \frac{dQ_{rev}}{T} $$
+The calculation of entropy change should be based on a reversible path, because entropy is only an exact differential when the heat is exchanged reversibly.
+
+\subsubsection{Example}
+\par 
+A student starts with one mole of Rw at 100 C. Initial testing reveals that the sample is in a single phase $\beta$. The material is heated to 250 C at atmospheric pressure. The material remains solid the entire time. Between 210 C and 240 C a gradual phase transition to the $\alpha$ phase is observed. Final testing again reveals that the material is single phase.
+\par 
+a) What is the enthalpy change of the material as a result of heating it from 100 C to 250 C? 
+\par 
+b) What is the minimal amount of heat that needs to be supplied to bring the material to
+250 C from 100 C?
+\par 
+The reversible path of the process: 1) Rw in $\beta$ is heated from 100 to 250. 2) Compute the reversible change of b to a. 
+
+
+$$\Delta H_1 = \int_{100}^{250} C_b dT$$
+$$\Delta H_2 = \int_{250}^{100} C_b dT  - \int_{100}^{250} C_a dT + \Delta H_{rx}(25 C) $$
+
+\par 
+Question: why is this process a reversible path? 
+
+The enthalpy change we calculated is already the minimum enthalpy change because the path we pick is  reversible.
+
+
+\subsubsection{Example}
+-Heat Exchanges between identical bodies with temperature ${\theta_i}$. What is the final temperature of these bodies. 
+\par 
+Start with first law $dQ = \sum_i dQ_i = C\sum_i dT_i  = 0$ The equilbirium condition indicates that they all the same final temperature. 
+$$\sum_i \theta_i = N T_f$$ 
+The final temperature of the average of temperature of all the identical bodies. 
+\par
+-What is the final temperature if a Carnot engine is used to transfer heat between the n bodies? What is the amount of work done by the engine in this case. 
+The detailed carnot engine network is not known, but the total entropy change in this case should be 0. 
+$$dS = \sum_i \frac{dQ_i}{T} = 0$$. The temperatures of different bodies are dynamically changing.  
+
+$$dS = C \sum_i \frac{dT_i}{T}$$
+
+$$S = C \sum_i \ln \frac{T_f}{\theta_i} = 0  $$ 
+
+and the work done is simply $$W = C \sum_i (\theta_i - T_f)$$ which is the total change of heat content of the system. 
+
+
+\par 
+\subsection{Maxwell's Relation}
+Maxwell's relations are powerful mathematical results from multivariable calculus. All the thermodynamical manipulations can be done from 1) the generalized chain rule and 2) cyclic relations. 
+
+\subsubsection*{Generalized Chain Rule}
+$$ \frac{d f}{d x})_y=\frac{d f}{d z})_x \frac{d z}{d x} )_y+\frac{d f}{d x}) _z$$
+
+-Proof: 
+$$df = \frac{d f} {dx}_y dx + \frac{d f} {dy}_x dy$$
+$$df = \frac{d f} {dx}_y dx + \frac{d f} {dy}_x (\frac{dy}{dx}_z dx + \frac{dy}{dz}_z dz)$$ 
+
+$$\frac{df}{dx}_z = \frac{df}{x}_y + \frac{df}{dy}_x \frac{dy}{dx}_z (QED)$$ 
+
+\subsubsection*{Cyclic Relations}
+$$\frac{dy}{dx}_z \frac{dx}{dz}_y \frac{dz}{dy}_x = -1$$
+
+-Proof:
+
+$$dz = \frac{dz}{dx}_z dx + \frac{dz}{dy}_x dy$$
+impose the condition that $dy = \frac{dy}{dx}_z $ when $dz = 0 $
+$$dz = 0 = \frac{dz}{dx}_y dx + \frac{dz}{dy}_x \frac{dy}{dx}_z dx$$
+$$-1 = \frac{dx}{dz}_y \frac{dz}{dy}_x \frac{dy}{dx}$$
+
+\subsection{Legendre Transfrom} 
+\par 
+
+Give a function $f(x)$, we can transform it to a new function in terms of its derivatives. 
+
+Given $f({x_i})$, define $p_i = \frac{d f}{dx_i}$, $\phi({p_i}) = f({x_i}) - \sum_i p_i x_i$
+
+\subsection*{Euler Integral and its Consequences}
+
+\par
+Given the scaling of a function: 
+$$\lambda^n f({x_i}) = f({\lambda_i})$$
+take the derivative with respect to $\lambda$: 
+$$n\lambda^{n-1} f({x_i}) = \frac{df}{d(\lambda x_i)} \frac{d(\lambda x_i)}{\lambda} = \frac{df}{d(\lambda x_i)} x_i $$
+and let $\lambda = 1$ and we have the Euler relations.
+\subsection*{Gibbs-Duhem Relation}
+\par
+Gibbs-Duhem is derived from the euler equation and the thermodynamic identity. 
+$$E = TS - PV + \sum_i \mu_i n_i$$
+$$H = E + PV = TS + \sum_i \mu_i n_i$$
+$$F = E - TS = - PV + \sum_i \mu_i n_I$$
+$$G = \sum \mu_i n_i$$
+The corresponding differential of these potentials: 
+$$dE = TdS - PdV  + \sum_i \mu_i dn_i$$
+$$dH = TdS + VdP + \sum_i \mu_i dn_i$$
+$$dF = SdT - PdV + \sum_i \mu_i dn_i$$
+$$dG = SdT + VdP + \sum_i \mu_i dn_i$$
+
+\par
+The Gibbs-Duhem relation states the relation among all the differential intensive variables.
+$ \sum_i n_i d \mu_i = S dT + V dP $ 
+When the temperature and pressure is constant, the chemical potential among different components of the same is balanced and the equilibrium condition: $\sum_i n_i d\mu_i = 0$ which leads to $\sum_i \mu_i = 0$
+
+\par 
+It is also valuable to note that the relationship between $G$ and $\mu$. Because $T$ and $P$ are fixed, adding a particle to the system will not make it costs more energy to add the next particle:
+$$G = \sum_i n_i \mu_i$$ 
+
+\subsection{Chemical Equilibria}
+Consider a reaction with four gaseous species with $v_I$ representing the stoichiometric proportion: $v_a A + v_b B \--> v_c C + v_b B$ 
+
+$$ G = \sum_i n_i \mu_i $$ 
+$$dG  =\mu_i dn_i + V dP = \sum_I n_i d\mu_i + \mu_i dn_i $$
+$$VdP = \sum_i  n_i d\mu_i$$
+
+The chemical potential of a gas integrated from a reference state: 
+$$ n \int_{\mu_o}^{\mu} d\mu = \int_{P_o}^{P} VdP $$
+$$ \mu = \mu_o + k T \ln \frac{P}{P_o}$$
+
+By the equilibrium condition given constant temperature and pressure: 
+
+$$\sum \mu_i dn_i =0 $$
+However, the change of chemical species is coupled between reactants and products. In the example reaction given above,  The Gibbs energy of the products and reactants should be same. 
+$$v_a \mu_a  + v_b \mu_b = v_c \mu_c + v_d \mu_d$$
+$$\mu_i =\mu_{io} + k T \ln \frac{P_i}{P_o} $$
+Plugging the chemical potential expression into the condition above: 
+$$\sum_{reactant} v_i kT \ln \frac{P_i}{P_o} -\sum_{prodcut} v_i kT \ln \frac{P_i}{P_o} = \sum_{reactants} \mu_{io} - \sum_{products} \mu_{io}$$
+define Gibbs free energy of this reaction: 
+$$\Delta G_o = k T \ln (\frac{\Pi_{rx}P_i}{\Pi_{pr}(P_i P_o)})$$
+\subsection*{Example: Equilibrium between water droplet and vapor}
+\par 
+Compute the chemical potential equilibrium condition between water vapor and droplet.  
+\par
+$$dF = -S dT + \mu_l dn_l + \mu_v dn_v - \gamma dA$$
+Derive a relation between the change in droplet surface and change in the molar quantity of droplet surface: 
+$$A = \frac{3 n_l v}{r}$$ 
+The equilibrium condition: 
+$$dF = -S dT + \mu_l dn_l + \mu_v dn_v + \gamma \frac{3 v}{r} dn_l$$
+change of water molecules in both phase is conserved:
+$$dn_l = -dn_v$$
+$$0 = -S dT + \mu_l dn_l - \mu_v dn_l + \gamma \frac{3 v}{r} dn_l$$
+
+$$\mu_l + \gamma \frac{3 v}{r} = \mu_v$$
+Introducing the pressure dependence on the chemical potential assuming water vapor behaves like an ideal gas the equilibrium condition can be expressed in the following way: 
+
+$$\mu_{lo}  = \mu_{vo}$$
+The chemical potential balance between the flat water droplet and water vapor at atmosphere pressure.
+
+This relation can be more accurately expressed if we consider vapor pressure and curvature energy 
+$$\mu_{lo} +  \gamma \frac{3 v}{r} = \mu_{vo} + kT \ln \frac{P_v}{P_o}$$
+
+\section{Ensemble Theory}
+
+\subsection{Lagrange Multiplier Method} 
+\par 
+Maximize $f(x,y)$, with the constrain $g(x,y) = 0$
+maximum of $f(x,y)$ cannot be increasing in the direction of any neigboring point where $g = 0$. It is equivalent to minizmize the following equation: 
+$$L(x, y, \lambda) = f(x,y) - \lambda  g(x,y)$$
+
+It is simply to derivative with respect to all the variables and set them to zero. 
+
+$$\nabla_{x,y,\lambda} L(x,y,\lambda) = 0$$
+This leads to: 
+$$\nabla_{x,y,\lambda} f(x,y) = \lambda \nabla_{x,y} g(x,y)$$
+This equation has to be satisfied simultaneously with $g(x,y) = 0$
+
+\subsubsection*{Example}
+\par
+Minimize the function $f = x + y$ with the constraint on a unit circle $x^2 + y^2 = 1$
+
+$$ y +\lambda  2x = 0$$
+$$x + \lambda 2y = 0$$
+$$x^2 + y^2 = 1$$
+\par
+The minimum points as well as the minimum value of $\lambda$ is obtained by solving the system of equation above. The beauty of Lagrange multiplier is that although the value of constraint $g(x)$ is 0, the constraint is imposed on the gradients of the function. This action secretly introduces a constraint on the variation of different variables and such variations can be involved with coupling of dervivaties. This effect is more pronounced if some variable $x$ and its derivatives is introduced in the functions that is to be minimized/maximized. 
+
+\par 
+In the example given above is to minimize a function with 2 degrees of freedom with constraint on a circle, it is not hard to inspect that the minimum of of function we get is a point, because it is just to find the minimum on a line which can be only be a point. However, it is still possible to get a path in the coordinate space, this is related to how we define the constraint. 
+\par
+(*maybe include the example on Feynman path integral which introduces a path as the stable minimum*) 
+
+\subsection{Microcanonical Ensemble}
+\par 
+By using the Lagrange Multiplier method, we can obtain the most probable distribution function of different ensemble or boundary conditions. From thermodynamics, we know that if a system has constant entropy, volume and number of particles $(N, S, E)$, the most probable distribution is a uniform distribution which corresponds to the maximization of entropy. 
+\par 
+For fixed energy in a system, the probability of each possible state the reciprocal of number of states with energy $E$. Under the constraint of probability conservation, the Lagrangian to be minimized is the following: 
+$$\Omega(N, V, E) + \lambda \sum_i p_i = 0$$ 
+$$ \frac{d \Omega }{d p_i } =  \lambda $$
+\par 
+This implies that the probability distribution is uniform. 
+
+\subsection{Canonical Ensemble}
+The previous example is not interesting, because the system of interest is stationary with respect all the extensive variables which are the natural way of defining the system. If we allow changes in energy and fix the temperature, we allow the changes of multiplicity of the system by allowing the energy to change. This leads to the fluctuation of energy. 
+\par 
+(The temperature here is not the temperature of the system. If the system consists of ideal gas?the energy is then linearly proportional to temperature. This would imply that knowing the temperature is equivalent of knowing the energy. Therefore, fixing energy and temperature are equivalent. The temperature here is the temperature of the heat bath(environment), which is a measure of how fast the energy of the heat bath can be coupled into the system of interest) 
+\par 
+Finding the distribution as a function of energy can be done by the method of Lagrange multiplier. I find the derivation provided by McQuarrie is very fundamental in nature. Taking the logarithm of the multiplicity is a crucial rescaling of a huge number. This is an elegant and necessary step which convey a unique kind of algebraic structure. 
+\par
+If we compute the total possible states of a system as a certain energy. Under the constraint of particle number conservation, the multiplicity can be computed by the occupational number of different energy states. For many-body problem of this scale, the energy eigenvalues of the system forms a continuum spectrum of energy. We start by counting discretely and rescale it by taking the log of the huge number. Let the occupational number of a energy state $n_i$ which is the number of particles with energy $E_i$. By counting the number of ways all the $N$ particles can be arranged into different energy eigenvalues. Because the information of detailed particle arrangement of the same energy value is not important fro ensemble average, the arrangement of individual particles with the same $E_i$ does not matter. 
+
+$$\Omega(\{n_i\}) = \frac{N!}{\Pi n_i!}$$
+
+With constraint of energy conservation $\sum n_i E_i = U$ and $\sum n_i = N$, the Lagrangian to be minimized is the following: 
+$$L = \ln \Omega(\{n_i\}) + \beta \sum_i n_i E_i + \alpha \sum_i n_i
+$$
+\par 
+Because each $n_i$ can be varied independently, minimize the Lagrangian gives the condition: 
+
+$$\frac{d (n_i \ln n_i - n_i)}{d n_i} + \alpha + \beta E_i = 0
+$$
+$$\ln n_i  + \alpha + \beta E_i = 0 
+$$
+$$n_i = e^{-\alpha + \beta E_i}$$
+by taking the sum on both sides: 
+$$N = e^{-\alpha} \sum_i e^{-\beta E_i}$$
+$$e^{\alpha} = \frac{\sum_i e^{-\beta E_i}}{N}$$
+$$Q =  \sum_i e^{-\beta E_i} $$ 
+\par 
+The connection between $\beta$ and other thermodynamical quantities can be drawn by massaging the equation we have to have into similar form with the "familiar" thermodynamical quantity. Start with the expression for average energy:
+$$\bar{E} = \frac{\sum_j E_j e^{-\beta E_j}}{\sum_j e^{-\beta E_j}}$$
+It is essential to note that E is explicitly a function of $\beta$. In addition, let us assign each state with a unique pressure quantity. This assumption makes the energy expression a function $V$ and $\beta$
+
+By definition: $p_j = -\frac{d E_j}{d V}$. Use this definition we can take the derivative of energy with respect to volume and generate a pressure-like quantity. We do not directly have pressure after taking the derivatives because we do not know if the derivative we are about to take is on the condition of constant entropy. Keep in mind that $\frac{dE}{dV}_S = - P$. 
+
+However, we can still attempt to do the calculation to deduce under what condition the derivative is taken. 
+
+$$\frac{d \bar{E}}{dV} = \frac{(\sum_j (-p_j) e^{-\beta E_j} - \sum_j E_j \beta e^{-\beta  E_j} (-p_j)) \sum_j e^{-\beta E_j} - ( \sum_j -\beta e^{-\beta E_j} (-p_j)  ) \sum_j E_j e^{-\beta E_j}}{\sum_j e^{-\beta E_j} \sum{e^{-\beta E_j}}}$$
+
+$$\frac{d \bar{E}}{dV}_{\beta} = - \bar{p} - \beta \overline{Ep} + \beta \overline{p}\overline{E}$$
+
+This expression is obviously not taken under constant entropy, otherwise it would simply yield $-\overline{p}$. It is then reasonable to assume the derivative is taken at constant pressure. Using the familiar Maxwell's relation:
+$$\frac{dE}{dV}_T = - P + T \frac{dP}{dT}_v$$
+
+Our expression need further massage by utilizing the moment generating property of the partition function. 
+$$\frac{d \overline{p}}{d \beta} = \overline{Ep} - \overline{E}\overline{P} $$
+$$\frac{d \bar{E}}{dV}_{\beta} = -\overline{p} - \beta \frac{d \overline{p}}{d\beta}$$
+
+Let $\beta = \frac{1}{k T}$ would yield the final result: 
+
+$$\frac{d \bar{E}}{dV}  = - \overline{p} + T \frac{d \overline{p}}{d T}_v$$
+
+\subsection{Compute the multiplicity of ideal gas(Resolving the Gibbs Paradox) }
+ \par 
+Having the partition function gives us another way to compute the entropy of ideal gas. This section reviews and compares two ways of computing the values: 1) computing the phase space volume. 2) computing from the partition functions. I also try to clarify the confusion related to mixing(Gibbs' Paradox). 
+
+A natural way to do the counting is to consider a particle in a box. 
+$$\epsilon(n_x, n_y, n_z) = \frac{h^2}{8m L^2} (n_x^2 + n_y^2 + n_z^2)$$
+
+By fixing $\epsilon$, we can compute the corresponding number of states corresponding to the energy. The multiplicity scales like: 
+
+$$\Omega \propto 4 \pi n^2 = \frac{8 m V^{3/2} \epsilon}{h^2} $$
+
+However, this is the case for single particle. For the surface area of a higher dimensional surface of dimension 6N, we have a more general results[pathria]:
+$$\Omega \approx  (\frac{V}{h^3})^N \frac{(2 \pi m E) ^{3N/2}}{(3N/2)! }$$
+\par 
+We have a entropy function in terms of E and can therefore compute the temperature expression.
+$$S(N,V,E) = N k \ln [\frac{V}{h^3} (\frac{4\pi m E}{3N})^{3/2}] + \frac{3}{2} N k$$
+$$S(N,V,T) = N k \ln [\frac{V}{h^3} (\frac{4\pi m \frac{3N k T}{2}}{3N})^{3/2}] + \frac{3}{2} N k$$
+
+It is interesting to notice that at this point, $S(N,V,E)$ is not a purely extensive quantity. If you scale N with $\alpha$, you do not get $\alpha S(N,V,E)$. Moreover, when we try to compute the entropy of mixing for two identical gas with expression we obtained above, we would find a entropy increase, but the mixing of identical gas is essentially a reversible process(there should not be any entropy change). 
+An ad hoc way to correct this inconsistency with thermodynamics is to subtract the entropy expression with the term$k \ln N! $. And the new entropy expression is: 
+$$S(N,V,E) = Nk \ln[\frac{V}{N h^3} (\frac{4\pi m E}{3N})^{3/2}] + \frac{5}{2} N k$$ 
+This is an extensive quantity and has linear scaling with N. 
+\par 
+The second method of computing entropy arises from partition function, and this has the benefits of not having the confusion like the Gibbs' paradox. All you need is straightforward calculation. Integrate the partition function over the phase space with the volume of microstate as $h^3$: 
+
+$$Q_{N}(V,T) = \frac{1}{N! h^{3N}} \int e^{-\beta H} \Pi_i^{N} d^3 p_i d^3 q_i$$
+For ideal gas, $H = \frac{p^2}{2m}$
+
+$$Q_{N}(V,T) = \frac{1}{N!} [\frac{V}{h^3} (2 \pi m k T)^{3/2}]^N$$
+
+Therefore, the entropy is taking the derivative of free energy with respect to T:
+
+$$S = - \frac{d \ln Q_N}{d T} = Nk [\ln(\frac{V}{N} (\frac{2 \pi m k T}{h^2})^{3/2}) + \frac{5}{2}]$$
+
+\subsection{Crook's Equality}
+\par
+As we have derived a way connecting microscopic arrangement to equilibrium free energy, it would be interesting to try prove the Crooks' equality which connects the two equilibrium states with a reversible external work protocol $W$. The proof presented here is very brief. (To be honest, I do not understand this completely but find it rather fascinating)
+\par
+Imagine two points in phase space $\mu$ and $\mu'$. The system is held in a heat bath with constant temperature. For the work protocol that change $\mu$ to $\mu'$, there is a negative work protocol that reverse the process. This reversible work is always possible but with a different probability due to time reversal symmetry breaking. 
+
+The probability of having $\mu$ and $\mu'$ in the equilibrium state are:
+
+$$p(\mu) = \frac{e^{-\beta H(\mu)}}{Z}$$
+$$p(\mu') = \frac{e^{-\beta H(\mu')}}{Z} = \frac{e^{-\beta H(\mu)- W(\mu)}}{Z} $$
+The probability of $p_f(W)$ and $p_r(-W)$: 
+
+$$p_f(W) = \sum_{W(\mu) = W} p(\mu)$$
+$$p_r(-W) = \sum_{W(\mu') = -W} p(\mu')$$
+
+$$\frac{p_f(W)}{p_r(-W) }= \frac{Z'}{Z} e^{-\beta(H(\mu) - H'('\mu))} = e^{\beta(W + F - F')}$$
+
+\par there are three aspects I find this really interesting: 1) One can find the free energy difference between two states by knowing the ratio between work distributions. 2) There is no limit on the speed of the work protocol. 3) It is anequality but not a inequality. 
+
+\subsection{Grand Canonical Ensemble}
+\par 
+GCE allows fluctuation in number of particles. Define the grand partition function by doing a Laplace transform for N. 
+$$z = e^{\beta \mu}$$
+
+$$\int_N dN \: z^N Q(N,V,T)$$
+The discrete version: 
+$$\sum_N  z^N Q(N,V,T)$$
+
+Similar to the GC, we can compute the fluctuation in particle numbers by taking the derivatives. 
+$$\overline{N} = \frac{1}{\beta} \frac{d Z}{d \mu}$$
+$$\overline{N^2} = \frac{1}{\beta^2} \frac{d^2 Z}{d \mu^2}$$
+$$..............$$
+The moment can be generated by taking the natural logarithm. 
+$$\frac{d \ln Z}{d \mu} = \frac{Z'}{Z}= \beta \overline{N}$$
+$$\frac{d^2 \ln Z}{d \mu^2} = \frac{Z''}{Z}- \frac{Z'Z'}{Z^2}= \beta^2 (\overline{N^2 } -\overline{N }^2) $$
+
+$$\frac{d^2 \ln Z}{d \mu^2} = \frac{Z'''}{Z}+\frac{2 Z'^3}{Z^3}-\frac{3 Z' Z''}{Z^2} = \beta^3 \overline{N^3} + 2 \overline{N}^3 - 3 \overline{N} \overline{N^2}$$
+
+$$.........$$
+
+It is interesting to note that the mathematical structure presented above is essentially the same of a cumulant generating function which is defined as: 
+
+$$\hat{P} = <e^{-i \sum_j k_j x_j}>$$
+
+and the cumulants is obtained by taking the derivatives of the natural log of the operator with respect the to the conjugate variables, the order of the cumulant is just the order of the derivatives. 
+
+$$<x^{n1} x^{n2}>_c = (\frac{d}{d(-i k_1)})^{n_1} (\frac{d}{d(-i k_2)})^{n_2} \ln \hat{P}$$
+
+And the moments are generated by taking the derivative:
+$$<x^{n1} x^{n2}> = (\frac{d}{d(-i k_1)})^{n_1} (\frac{d}{d(-i k_2)})^{n_2} \hat{P}$$
+ 
+
+\subsection{Systems of Harmonic Oscillators}
+\par 
+Disclaimer: because the confusing nature of this photon counting problem, this part of the note is still under my review, suggestions are welcome. 
+\par 
+I found it is a confusing business in terms of deciding the distinguishability and degeneracies of systems of photons. If we consider photons quantum mechanically, the photon number does not have a meaning. All it matters is the number of energy quantum the system contains. According to my understanding, the partition function of the system is written as: 
+$$Q_1 = \sum_n e^{- \beta(n + \frac{1}{2}) h \omega}$$ 
+\par 
+However, the expression above is only for single photon partition function. The partition partition need to be raised to power of N to describe a system of N distinguishable photons. (I am not sure if I understand this argument thoroughly.) Further more, Pathria includes the density of photon states in the counting which makes it even more confusing: 
+$$Q_N = \sum_R {{N+R-1}\choose{R}}e^{-\beta \frac{1}{2} (N+R) \hbar \omega}$$
+where N is the particle number and I don't know what R is. 
+
+\subsection{Distinction between single particle and many particle partition function}
+\par 
+The partition function we encounter works for both composite many particle systems and single particle systems. However, for composite systems, it is not always feasible to know the energy levels of the system and degeneracy of each energy level. 
+\par 
+If the particles are non-interacting, the partition function can be expressed in terms of product of many single particle function. The products not only sums over the energy level but also takes care of the multiplicity counting of each energy degeneracy. 
+\par 
+Consider the two single particles case with two energy levels ${0, \epsilon}$:
+$$z = 1 + e^{-\beta \epsilon}$$
+\par 
+Take this as a composite system and there are three energy levels $0, \epsilon, 2\epsilon$ and there are two ways of having the system in energy level $\epsilon$: 
+$$Z = 1 + 2 e^{-\beta \epsilon } + e^{-\beta \epsilon} = z^2 = (1 + e^{\beta \epsilon})( 1+ e^{\beta \epsilon})$$ 
+\par
+This is essentially by taking the product of the single particle partition function. If we are looking at a system of three distinguishable particles, we simply raise $z$ to the power of 3. 
+\par
+For the case of indistinguishable particles, people sometimes divide the product of single particle partition function by $N!$ where $N$ is the number of particles of the system.
+However, is this always correct thing to do simply divided the product of single particle partition function by the factorial of the particle numbers. Lets take a four-level single particle function as an example. In this system, there are two particles. The composite partition function can be written in the following manner: 
+$$Z = \left(e^{-3 \beta  \epsilon }+e^{-2 \beta  \epsilon }+e^{-\beta  \epsilon }+1\right)^2 = e^{-6 \beta  \epsilon }+2 e^{-5 \beta  \epsilon }+3 e^{-4 \beta  \epsilon }+4 e^{-3 \beta  \epsilon }+3 e^{-2 \beta  \epsilon }+2 e^{-\beta  \epsilon }+1$$
+\par
+The composite energy level 3 $\epsilon$ has a multiplicity of 4 and if the two particles are indistinguishable, dividing it by 2 makes sense. However, it is not valid for other energy levels. We can easily see the condition by this ad hoc renormalization approach work: when the number of particles are high or there are many energy levels one particle can be at, there renormalization is fine because most particles will not have the same single particle energy state. 
+
+\subsection{Criterion of Classical Statistical Mechanics}
+\par
+As discussed in the previous section, the simple renormalization of $N!$ is safe as long as the number of available states is more than the number of particles. However, when the particle get denser, we need to use quantum statistics to more carefully take care of the indistuiguishable particles. 
+\par
+The general criterion: 
+$$\Omega >> \frac{N}{V}$$
+\par
+We can translate this sates in terms of partition function,
+$$Z_1 = \sum_i e^{-\beta E_i}>> \frac{N}{V}$$
+because the single particle partition function is also in some way a counting function with statistical weights for each state. 
+\par
+We know the single particle partition function: 
+$$Z_1 = \int e^{-\beta \frac{p^2}{2m}} d^3 p d^3 q = V (\frac{\sqrt{2 \pi m k T}}{h} )^3 = \frac{V}{V_{quantum}}$$
+\par
+The criterion is explicitly expressed in variables that we are familiar: 
+$$\frac{V}{N} >> V_{quantum}$$
+
+\subsection{Fermi Dirac and Bose Einsterin Statistics}
+\par
+We know when we need to quantum counting, and we can do it to derive the two famous quantum mechanical distributions Fermi-Dirac and Bose-Einstein distributions. In both cases, we are concerned with a open system in a heat bath. 
+\par
+The derivation of the statistics are also confusing in my opinions and different textbooks derive this formula differently. I find it essential to differentiate the definition of different variables in the derivation because one may easily confuses the total particle number with occupation number, total system energy with energy levels. I found the derivation presented in McQuarrie more rigorous than the corresponding section in Schroeder. 
+\par 
+Two fermions cannot occupy the same state, so the Grand Partition Function is simply. So N is in ${0,1}$ and $E$ is all the single particle energy level: 
+$$Z = \sum_{n = 0,1} \sum_{E} e^{\beta n \mu} e^{-\beta n E} = 1 + e^{-\beta (E - \mu)}$$
+The occupation function is obtained by taking the derivative of the grand potential with respect to $n$:
+$$\overline{n} = \frac{1}{1+ e^{-\beta(E-\mu)}} $$ 
+
+\par 
+For Bosons, each energy level can be filled up to arbitrary number. 
+
+$$ Z = \sum_{n = 0,1} \sum_{E} e^{\beta n \mu} e^{-\beta n E} = \sum_{n = 0, 1,2...} (e^{-\beta(E- \mu)} )^n = \frac{1}{1- e^{-\beta(E - \mu)}}$$
+
+$$\overline{n} = \frac{1}{1- e^{-\beta(E - \mu)}}$$
+\par 
+
+[Question]: What is the fluctuation of this distribution? Can you compute the expression for chemical potential explicitly?
+
+\subsection{Comments on How to Construct Partition Functions}
+\par
+I find different textbooks construct the partition function in a very different way. McQuarrie constructs the partition function concerning a system of many particles, while Schroeder only concerns the occupation of single energy level. Both approaches are correct but it is not always straightforward to see the equivalence of the two constructions. 
+\par
+This section tries to set up a more generalized way of thinking when consider different systems. There are several aspects that need to be considered: 
+\par
+\subsubsection*{Partition function of the system, single energy level or a single site? }
+\par
+$$Z = \sum_{N=0}^{\infty} \sum_{\{n_i\}}^{\sum_i n_i = N}  e^{- \sum \epsilon_i n_i \beta}$$
+where $\epsilon_i$ is the energy level, ${n_i}$ is the occupation number of different energy levels or one may understand it as a distribution. $\lambda$ is the fugacity. The sum is under the constraint that $\sum_i n_i = N$. We may rearrange the expression and see how it relates partition function of single energy levels.
+$$Z = \sum_N \lambda^N \sum_{n_1} \sum_{n_2}....  \Pi e^{-n_i \epsilon_i \beta} = \sum_N \lambda^N \Pi_i  \sum_{n_i} e^{-n_i \epsilon_i \beta} $$
+Consider the constraint $\sum_i n_i = N$. We can further rewrite the partition function into the following form: 
+$$Z = \sum_N \Pi_i \lambda^{n_i} \sum_{n_i} e^{-n_i \epsilon_i \beta} = \Pi_i  \sum_{n_i}^{n_{max}} \lambda^{n_i} e^{-n_i \epsilon_i \beta}$$
+
+The benefits of writing the partition function of the system is that it makes it easy to apply the quantum mechanical constraint of statistics. For example, we now fermions can allow that 1,0 occupancy for each energy level, $n_{max} = 0$. And for Bosons, the occupations can be up to infinity, $n_{max} = \infty$. In addition, we see that the partition function of the system is the product of partition function of individual energy levels. We can define the the single energy level partition function: 
+
+$$z_i =  \sum_{n_i}^{n_{max}} \lambda^{n_i} e^{-n_i \epsilon_i \beta}$$ 
+This is essentially the derivation I did for the previous sections. 
+\par
+We then consider a case where it makes more sense to do the calculation on single energy state grand partition function first. Consider a different case where we have M binding site for particles, each site can either be occupied or empty. This is similar to the binding of oxygen to hemoglobin in blood. Assume the occupied state has a energy of $\epsilon$. The partition function for a single site is: 
+$$q = 1 + e^{-\beta \epsilon}$$
+Because sites are distinguishable, there is no need to renormalize the partition function. 
+$$Q = \Pi_i q_i = q^M$$
+The grand partition function is then: 
+$$Z = \sum_N^{M} \lambda^N q^M$$
+But, is this helpful. The grand partition function is a laplacian transform of the partition function, but, the single partition function over all sites is not explicitly a function of $N$. What should we do? Clearly we need to make the partition function depends on N. 
+
+$$Z = \sum_N \lambda^N \sum_{states} e^{-E_j \beta} = \sum_N \lambda^N \frac{M!}{N!(M-N)!} e^{-N \epsilon\beta} =
+\sum_N^{M}  \frac{M!}{N!(M-N)!} (\lambda e)^{-N \epsilon\beta} =  (1+(\lambda e)^{-\epsilon\beta})^M$$
+
+\par
+It is clear that the system GPF is the single site GPF(Grand Partition Function) raised to the power of $M$ the number of sites. In this particular example, one can start by constructing a single level GPF. 
+
+\subsubsection*{When do we calculate single particle partition function first?}
+\par
+As discussed before, the benefit of constructing single state partition function(instead of single particle partition function) is that it is straightforward to include constraint on the energy level. One may construct the single particle partition function for fermi gas: 
+$$q_1 = \sum_j e^{-\beta \epsilon_j }$$
+We cannot simply raise $q_1$ to the power of N and renormalize by dividing an ad hoc factor $N!$, because quantum system obey very specific rules. However, we can readily start by constructing single particle partition functions for dilute and non-quantum gas, because there are combinatorial space larger than the number of particles. The criterion is derived before. 
+
+\subsubsection*{Strategy} 
+I think I have observed a pattern, it all depends on the boundary conditions. If it is about fixing the number of particles, we can construct a single particle partition function and raised to the power of number of particles and do whatever degeneracy correction procedure. If is open to the exchange of particles we instead derive the single energy level GPF and raised to the power of available energy levels. 
+\par 
+For canonical ensemble: 
+$$q_1 = \sum e^{-\beta \epsilon_i}$$
+$$Q = \frac{q_1 ^ N}{N!} $$
+For grand canonical ensemble: 
+$$z_1  = \sum \lambda^n_i e^{-\beta \epsilon_i n_i}$$
+$$Z = z_1^N$$ 
+There is no need to to divide it by $N!$ because energy levels are distinguishable. 
+Let us do the example on ideal gas again for both the CE and GCE. 
+\par 
+Ideal gas in canonical ensemble formalism:
+$$q_1 = \int e^{-\beta \frac{p^2}{2m} }d^3 p$$
+$$Q(N, T) = \frac{(\int e^{-\beta \frac{\beta p^2}{2m} d^3 p})^N}{N!}$$
+\par
+Ideal gas in grand canonical ensemble formalism:
+$$z_1 = \int \lambda^{n_{i}}  d^3 n_i \int e^{-\beta \frac{ n_1 p_i^2}{2m}}  d^3 p_i$$
+$$Z = \int \Pi_i dn^3_i \int  d^3 p_i\lambda^{n_{i}} e^{-\beta \frac{ n_i p_i^2}{2m}}$$
+
+\subsection{Lattice gas models} 
+Here, we summarize the lattice gas models from Hill in the from of a table. 
+
+ideal lattice gas: 
+$F(M,N,T)$
+$Q = \frac{M!}{N! (M-N)!} e^{-\beta \epsilon N}$
+$\phi = kT \ln \frac{1}{1- M/N}$
+
+ideal lattice gas grand canonical ensemble 
+$\Lambda(\mu, M, T)$
+$Z = \sum_N^{M} \frac{M!}{N!(M-N)!} e^{-\beta \epsilon N} \lambda^N$
+$\overline{N} = \lambda \frac{d \ln Z }{d \lambda} = \frac{M q \lambda}{1 + q \lambda}$
+
+mobile lattice gas
+$F(A,N,T)$ A is the area of the adsorption surface 
+$q(T) = q_{xy} q_z e^{-U_{00} \beta} $ $ (qxy  = q_{translation}) $
+
+Multiple independent molecule binding 
+$F(M,N,T)$
+$$Q = \sum_{a_i} \frac{M!}{\Pi_i a_i! } \Pi_i q(i)^{a_i}$$
+$a_i$ is the number of sites which have i molecules binding 
+Under the constraint $\sum_i a_i = M$, $\sum_i i a_i = N $
+$Z = \sum_{\sum_i a_i}^M Q \lambda^{\sum_i i a_i}$
+
+Two interacting molecules 
+$\Lambda(M, N,T)$ 
+$q(0) = 1 $
+$q(1) = q_1 + q_2$
+$q(2) = q_1 q_2 e^{- W \beta}$
+$Z = (q(0) + q(1) + q(2))^M$
+
+Adsorbed molecules in a pile 
+$\Lambda(M, N,T)$  
+$Z = ( \sum_{i =0 } q_1^i \lambda^i \lambda^i)^M $
+
+Two species binding problem: 
+$\Lambda(M, N,T)$ 
+$Z = (\sum_{S_a,S_b} ^{M_a, M_b} \lambda_a^{s_a} \lambda_b^{s_b})$
+
+Indistinguishable binding sites: 
+$Z(M , N, T) = (1 + q(1))^M / M!$
+
+
+
+ Generate
+Result (click "Generate" to refresh) Copy to clipboard
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{lll}
+\hline
+\multicolumn{1}{|l|}{Model Decription}                                        & \multicolumn{1}{l|}{Potential}            & \multicolumn{1}{l|}{Partition Function}                                                                      \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{ideal lattice gas}}                      & \multicolumn{1}{l|}{$F(M,N,T)$}           & \multicolumn{1}{l|}{$Q = \frac{M!}{N! (M-N)!} e^{-\beta \epsilon N}$}                                        \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                                        & \multicolumn{1}{l|}{}                     & \multicolumn{1}{l|}{$phi = kT \ln \frac{1}{1- M/N}$}                                                         \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{mobile lattice gas}}                     & \multicolumn{1}{l|}{$\Lambda(\mu, M, T)$} & \multicolumn{1}{l|}{$Z = \sum_N^{M} \frac{M!}{N!(M-N)!} e^{-\beta \epsilon N} \lambda^N$}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                                        & \multicolumn{1}{l|}{}                     & \multicolumn{1}{l|}{$\overline{N} = \lambda \frac{d \ln Z }{d \lambda} = \frac{M q \lambda}{1 + q \lambda}$} \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{multiple molecules binding}}             & \multicolumn{1}{l|}{$F(A,N,T)$}           & \multicolumn{1}{l|}{$Q = \sum_{a_i} \frac{M!}{\Pi_i a_i! } \Pi_i q(i)^{a_i}$}                                \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                                        & \multicolumn{1}{l|}{$\Lambda(\mu, M, T)$} & \multicolumn{1}{l|}{$Z = \sum_{\sum_i a_i}^M Q \lambda^{\sum_i i a_i}$}                                      \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Two interacting molecule }} & \multicolumn{1}{l|}{$F(M,N,T)$}           & \multicolumn{1}{l|}{$q(0) = 1 $ $q(1) = q_1 + q_2$ $q(2) = q_1q_2 e^{- W \beta}$}      \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                                        & \multicolumn{1}{l|}{}                     & \multicolumn{1}{l|}{$Z = (q(0) + q(1) + q(2))^M$}                                                            \\ \hline
+\multicolumn{1}{|l|}{Molecules in a pile}                                     & \multicolumn{1}{l|}{$\Lambda(M, \mu,T)$}  & \multicolumn{1}{l|}{$Z = ( \sum_{i =0 } q_1^i \lambda^i \lambda^i)^M $}                                      \\ \hline
+\multicolumn{1}{|l|}{m molecule types}                                        & \multicolumn{1}{l|}{$\Lambda(M, \mu,T)$}  & \multicolumn{1}{l|}{$Z = (\sum_{S_a,S_b} ^{M_a, M_b} \lambda_a^{s_a} \lambda_b^{s_b})$}                      \\ \hline
+\multicolumn{1}{|l|}{indistinguishable binding sites}        & \multicolumn{1}{l|}{$\Lambda(M, \mu,T)$}  & \multicolumn{1}{l|}{$Z(M , N, T) = (1 + q(1))^M / M!$}                                                       \\ \hline
+                                                                              &                                           &                                                                                                              \\
+                                                                              &                                           &                                                                                                              \\
+                                                                              &                                           &                                                                                                              \\
+                                                                              &                                           &                                                                                                             
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Fluctuations}
+
+
+\subsection{Laplacian Transform over Generalized Thermodynamic Variables}
+\par 
+Volume
+
+Polymer
+
+\subsection{A second look at chemical equilibrium }
+
+
+\subsection{The derivation of photon gas equation of state}
+\par 
+The photons obeys the Bose-Einstein statistics and we can therefore derive the equation of state from the partition function. One can find the energy of the system by taking the derivative of the partition function with respect to the $\beta$. However, this is wrong, because it does not take the energy level degeneracy into considerations. This requires us to modify the partition function to include the effects of degeneracy. The issue of degenerate state is different than the discussion above which deals with swapping of particles. The degeneracy we care here is related to the degenerate state in momentum eigenstates: particles with different momentum vector can have the same energy.
+\par
+We modify the expression for partition function to include this new type of degeneracy:
+$$Z =  \sum_{n = 0,1,2...} \sum_{E} \Omega(E) e^{\beta n \mu} e^{-\beta n E} $$
+Where $\Omega(E)$ includes the counting of momentum degenerate states. However, integral over the grand partition function is hard to solve. We alternatively consider a single photon partition function and compute the expected energy.
+$$\epsilon = \frac{n \hbar  c  \pi }{L}  $$
+n here is not the energy level but related allowed wave mode index in the box. (This is a tricky concept, see wikipedia(Planck's law))
+$$Q_1 = \sum_n e^{- \beta \frac{1}{2} \epsilon} e^{-\beta {\epsilon n }} = \frac{e^{- \beta \frac{1}{2} \epsilon}} {1 - e^{-\beta \epsilon}}$$
+$$\overline{E_1} = \epsilon + \frac{\epsilon}{e^{\beta \epsilon} -1 }$$
+Having the single particle energy, we can integrate to get the total energy: 
+$$\overline{E} = \int_{0}^{\infty} \frac{\epsilon}{e^{\beta \epsilon} -1 } \frac{2 \pi n^2}{ 4} dn $$
+(Divided by 4 is to only over the octant of the energy state sphere)
+And we have the famous blackbody radiation formula: 
+$$\overline{E} = \alpha T^4$$
+
+\subsection{Bose Einstein Condensate}
+\par 
+Bosons will crowd into the ground state below certain temperatures. The anaylsis is tricky and is centered on the argument of conservation of particle numbers. 
+$$N = n_0 + \sum_{i > 0} n_i $$
+where N is the total number of particles and $n_0$ is the number of particles with the ground state energy. It is interesting to notice that the Bose-Einstein distribution fails to describe the number of particles at the ground state. 
+$$N = n_0 \int_0^{\infty} \frac{1}{e^{\beta (\epsilon - \mu)} -1} D(\epsilon) d\epsilon$$
+The reason is that the BE distribution diverges at $\epsilon$ approaches 0, and the density of state $D(\epsilon) = 0$. Therefore the number of particle counting does not include the ground state and we need to add $n_0$ to fully express the physical reality. 
+\par 
+By computing the integral directly, we arrive at the result: 
+$$N = n_0 + 2.612 (\frac{2\pi k T}{h^2})^{\frac{3}{2}} V $$
+We can therefore compute the critical temperature $T_c$when there is almost no particle in the ground states and it is simply a function N and other constants.
+$$ \sum_{i > 0} n_i  =  N(\frac{T}{T_c})^{\frac{3}{2}}$$
+$$N = n_0 + N(\frac{T}{T_c})^{\frac{3}{2}}$$
+At $T=T_c$, there is no particle in the ground state and $ \sum_{i > 0} n_i  = N$. Therefore, this expression works for $T < T_c$. And the all the excited states is simply N when $T > T_c$. The critical temperature $T_c$ is simply a temperature threshold below which the crowding of particles into the ground state occurs. 
+\par
+From our intuition, we know that $n_0 = N$ when $T = 0$. So the expression for the particle number in the ground state is:
+$$n_0  = N(1 - (\frac{T}{T_c})^{\frac{3}{2}})$$ 
+under the condition that $T < T_c$
+
+\subsection{Partition Function and Phase Transition}
+
+\subsection{Thermal Properties of Diatomic Ideal Gas} 
+\par 
+We assume the diatomic ideal molecules posses translational, vibrational and rotational degrees of freedom. 
+$$H_{tot} = H_{trans} + H_{vib} + H_{rot}$$
+We can than construct the single molecular partition function: 
+$$q_1 = q_{trans} q_{rot} q_{vib}$$
+\subsubsection*{Translation}
+We assume the diatomic ideal gas live in a box with many particles. The problems of obtaining the partition function is about summing over all the allowed modes.
+$$q_{trans} = \sum \Omega(E) e^{-E \beta} = \sum_{n_x} \sum_{n_y} \sum_{n_z} e^{- \frac{h^2}{8 m a^2} (n_x^2 + n_y^2 + n_z^2)} = (\frac{2 \pi m}{\beta h^2})^{\frac{3}{2}} V $$
+\subsubsection*{Vibration} 
+The energy levels are approximated as the energy levels of harmonic oscillators, excluding anharmonic effects. 
+$$q_{vib} = \sum \Omega(E) e^{-E \beta} = \sum_{n=0}^{n_{max}} e^{- (n+\frac{1}{2} ) \beta \hbar \omega} = e^{-\frac{\beta \hbar \omega}{2}} \sum_{n=0}^{n_{max}} e^{-n \hbar \omega \beta}$$
+Using the results from the sum of geometric series $\sum_{n} x^n  = \frac{1}{1 -x }$
+$$q_{vib} = \frac{  e^{- \frac{\beta \hbar \omega}{2}} } {1 - e^{- \beta \hbar \omega}} $$
+\subsubsection*{Rotation}
+The sum over all the rotational modes is counting the number of quantum state with quantum number $l$. For each value of $l$, there are $2l + 1$ degrees of freedoms which corresponds to the magnetic quantum number $m = -l,..0,...1$
+The energy of the rotation:
+$$E = \frac{l(l+1)}{2 I} \hbar^2$$
+$$q_{rot} = \sum_l (2l + 1) e^{- \beta \frac{l (l+1)}{2I}} \hbar^2$$
+Because $\frac{\hbar^2 \beta}{2I}$ is a small quantity, we can take the limit of the sum to the form of a integral. 
+$$q_{rot} = \int_0^{\infty} (2l + 1) e^{- \beta \frac{l(l+1)}{2I} }\hbar^2 dl = \frac{2I }{\beta \hbar^2}$$
+
+To derive the heat capcity $C_v = \frac{d \overline{E}}{dT}_v$ where $\overline{E} = k T^2 \frac{d \ln Q}{d T }$. SInce Q is the partition function a N-body system. Here becomes a tricky point: Shall we denote $Q = q_1^N $ or$ = \frac{q_1^N}{N!}$. 
+Rigorously, we have to examine the relations between thermal De Broglie wavelength and the scale of mobility of particles. In other words, to compare the values of states available and the number of particles. But you will find that both the two forms will give the same results for heat capacity in this case. However, specifically for this case, you will find chemical potential, entropy and other variables are affected by this factor of $N!$. This is very important for a comprehensive understanding of the Boltzmann approximation. 
+\par
+We now give a detailed proof of the statement. Assume $q$ is given for a single molecule partition function: 
+\begin{itemize}
+  \item Case 1: the exclusion the normalizing factor
+\end{itemize}
+\par
+$$Q = q^N$$
+$$\overline{E} = k T^2 \frac{d \ln Q}{dT} = N k T^2 \frac{d \ln q}{dT} $$
+\begin{itemize}
+  \item Case 2: the Inclusion the normalizing factor
+\end{itemize}
+$$Q = q^N/N!$$
+$$\overline{E} = k T^2 \frac{d \ln Q}{dT} =  k T^2 \frac{d \ln (N q - \ln N!)}{dT} = N k T^2 \frac{d \ln q}{dT}$$ 
+With the discussion stated above, let us compute and plot the contribution of different degrees of freedom to the total heat capacity. 
+
+\par
+\begin{table}[h]
+\centering
+\caption{Thermal Properties of Diatomic Molecules}
+\label{Zdiatomic}
+\begin{tabular}{|l|l|l|l|}
+\hline
+                            & Translation                           & Vibration                                                                   & Rotation                                                       \\ \hline
+Partition Function          & $(\frac{2 \pi m}{\beta h^2})^{3/2} V$ & $\frac{e^{- \frac{\beta \hbar \omega}{2}} } {1 - e^{- \beta \hbar \omega}}$ & $\frac{2I }{\beta \hbar^2}$                                    \\ \hline
+Characteristic Temperatures & -                                     & $\theta_{vib} = \frac{\hbar \omega}{k}$                                     & $\theta_{rot} = \frac{\hbar^2}{2 I k}$                         \\ \hline
+$C_v$                       & $\frac{3}{2} N k$                     & $N k (\frac{\theta_{vib}}{T})^2 \frac{1}{sinh^2(\frac{\theta_{vib}}{2T})}$  & $12 N k (\frac{\theta_{rot}}{T})^2 e^{-2 \frac{\theta_{rot}}{T}}$ \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Thermal Properties of Solids}
+\subsubsection{The general formalism}
+\par 
+At the beginning of the 20th century, Einstein presented the heat capacity model of solids in a theoretical way. In the model. The basic assumptions are: the entire N-atoms system can be considered as N independent harmonic oscillators, which mathematically gives that $g(\omega) = 3N \delta(\omega - \omega_E)$ and the degrees of freedoms are: $\int d\omega = 3N = \int 3N \delta (\omega - \omega_E) d\omega$. 
+\par
+Because we can assume the solid crystal system as N independent harmonic oscillators with a well-defined frequency. We borrow the results from partition functions of vibrational modes of diatomic molecules. 
+$$q_{vib} = \frac{e^{- \beta \hbar \omega /2}}{1- e^{- \beta \hbar \omega}} $$ 
+$$Q = \Pi_i^{3N} q_{vib} $$
+$$\ln Q = \sum_i^{3N} q_{vib} = \sum_i^{3N}  \frac{e^{- \beta \hbar \omega /2}}{1- e^{- \beta \hbar \omega}}  $$ 
+Alternatively, we sum over all the possible freqencies and take the integral limit. 
+$$\ln Q  = \int d\omega g(\omega)  \frac{e^{- \beta \hbar \omega /2}}{1- e^{- \beta \hbar \omega}} $$
+We can compute the energy which is simply the derivative of the natural log of the partition function. 
+$$\overline{E} = \frac{d \ln Q}{d \beta} = \int d \omega (\frac{\hbar \omega}{ 2}  + \ln (1 - e^{- \hbar \beta \omega})) g(\omega) d\omega$$
+We can compute other thermal properties emerged from vibrational degrees of freedom in solids. 
+
+\subsubsection*{Einstein Model}
+In Einstein's model, the assumption is simple: all harmonic oscillators take the same frequency. The distribution of vibrational frequency is $3N \delta (\omega - \omega_e)$: 
+$$\overline{E} = \frac{\hbar \omega_e}{ 2}  + \ln (1 - e^{- \hbar \beta \omega_e})$$
+The heat capacity is then: 
+$$C_v = 3 Nk (\frac{\hbar \omega_e}{k T})^2 \frac{e^{- \hbar \omega_e / kT }}{(1- e^{- \hbar \omega_e / kT })^2}$$
+Define a characteristic temperature: $\theta_e = \frac{\hbar \omega_e}{k}$, the expression is then simplified to: 
+$$C_v = 3 N K (\frac{\theta_e}{T})^2 \frac{ e^{- \theta_e / T} } {(1- e^{- \theta_e})^2}$$
+
+\subsubsection*{Debye Model} 
+\par 
+The Debye model considers a distribution of different vibrational modes. The total number of modes is 3N. 
+$$\Omega  = \frac{4}{3} n^2 \pi$$
+Given that $n = \frac{k L}{2 \pi}$
+$$\Omega = \frac{4}{3}(\frac{ \omega} {c})^3 \frac{1}{8 \pi^2} = \frac{V \omega^3}{c^3 6 \pi^2}$$
+Therefore:
+$$D(\omega) d\omega = \frac{d \Omega(\omega)}{d\omega} d \omega $$
+Keep in mind that for each vibrational frequencies, there are two transverse mode and one longitudinal mode, so for each $\omega$ there is degeneracy of 3. 
+$$\Omega(\omega) = \frac{3V}{2 \pi^2} \frac{\omega^2}{c^3} $$
+$$\overline{E} = \frac{d \ln Q}{d \beta} = \int d \omega (\frac{\hbar \omega}{ 2}  + \ln (1 - e^{- \hbar \beta \omega}))  \frac{3V}{2 \pi^2} \frac{\omega^2}{c^3}  d\omega$$
+The integration limit cannot be taken from 0 to infinity, because we only consider the density of states but not a normalizable distribution, the integration limit can be obtained from the conversation of vibrational modes. In this case $\Omega = 3N$. We can therefore define a Debye frequency and therefore a characteristic temperature:
+$$\int_0^{\omega_d} D(\omega) = 3N$$
+$$\theta_d = \frac{\hbar \omega_d}{ k}$$
+The heat capacity is: 
+$$C_v = k \int_0^{\omega_d} (\frac{\hbar \omega}{k T})^2 \frac{e^{- \hbar \omega / kT}}{1 - e^{- \hbar \omega / kT}} \frac{3V}{2 \pi^2} \frac{\omega^2}{c^3} = 9 N k (\frac{T}{\theta_d})^3 \int_0^{\frac{\theta_d}{T}} \frac{x^4 e^x}{(e^x -1)^2} dx$$
+
+
+
+
+%------------------------------------------------
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{unsrt}
+
+\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
